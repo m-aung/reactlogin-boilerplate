@@ -1,7 +1,31 @@
 body {
-  color: aquamarine;
+  margin: 0;
+  /* color: aquamarine; */
+  font-family: 'Newsreader', serif;
 }
-h1 {
-  color: cornflowerblue;
-  text-align: center;
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+.header {
+  padding: 10px;
+  background: #edf2f4;
+  border-bottom: 1px solid #9999;
+}
+.header a {
+  color: #0072ff;
+  text-decoration: none;
+  margin-left: 20px;
+  margin-right: 5px;
+}
+.header a:hover {
+  color: #8a0f53;
+}
+
+.header small {
+  color: #666;
+  visibility: initial;
+}
+.header .active {
+  color: #2c7613;
 }
