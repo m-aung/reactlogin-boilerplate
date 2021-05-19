@@ -10,8 +10,16 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "nodemon": "^2.0.7",
     "react": "^17.0.2",
     "react-router": "^5.2.0"
+  },
+  "devDependencies": {
+    "css-loader": "^5.2.4",
+    "nodemon": "^2.0.7",
+    "sass-loader": "^11.1.1",
+    "style-loader": "^2.0.0",
+    "webpack": "^5.37.1",
+    "webpack-cli": "^4.7.0",
+    "webpack-dev-server": "^3.11.2"
   }
 }
