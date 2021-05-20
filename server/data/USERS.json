@@ -1,0 +1,14 @@
+
+[{
+  "userId": "856324",
+  "password": "111111",
+  "name": "admin@gmail.com",
+  "username": "iamadmin",
+  "isAdmin": true
+},{
+  "userId": "753321",
+  "password": "123",
+  "name": "user1@gmail.com",
+  "username": "user1",
+  "isAdmin": false
+}]

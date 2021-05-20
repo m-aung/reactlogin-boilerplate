@@ -1,7 +1,10 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+// const path = require('path'); // Older version
+import path from 'path'; // ES 6 version
+// const HtmlWebpackPlugin = require('html-webpack-plugin'); // Older version
+import HtmlWebpackPlugin from 'html-webpack-plugin'; // ES 6 version
+const __dirname = path.resolve(); // ES 6 version
 
-module.exports = {
+const config = {
   // the output bundle won't be optimized for production but suitable for development
   mode: 'development',
   // the app entry point is /src/index.js
@@ -16,7 +19,8 @@ module.exports = {
     rules: [
       {
         // for any file with a suffix of js or jsx
-        test: /\.jsx?$/,
+        test: /.(js|jsx)$/,
+        // test: /\.jsx?$/, // jsx only
         // ignore transpiling JavaScript from node_modules as it should be that state
         exclude: /node_modules/,
         // use the babel-loader for transpiling JavaScript to a suitable format
@@ -34,6 +38,7 @@ module.exports = {
       },
     ],
   },
+  devtool: 'eval-source-map',
   resolve: {
     extensions: ['*', '.js', '.jsx'],
   },
@@ -44,3 +49,5 @@ module.exports = {
     }),
   ],
 };
+
+export default config;

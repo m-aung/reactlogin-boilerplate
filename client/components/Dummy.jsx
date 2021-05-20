@@ -1,6 +1,10 @@
 import React from 'react'
+import { getUser, removeUserSession } from '../services/Common';
+
 const Dummy = (props) => {
+  const user = getUser();
   const handleLogout = ()=> {
+    removeUserSession();
     props.history.push('/')
   }
   return (
@@ -11,4 +15,4 @@ const Dummy = (props) => {
     </div>
   )
 }
-export default Dummy;
+export default Dummy

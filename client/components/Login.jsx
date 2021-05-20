@@ -1,47 +1,74 @@
-import React, {useState} from 'react'
+import React, {useState} from 'react';
+import axios from 'axios';
+import { setUserSession } from '../services/Common';
+
+
 const Login = props => {
+  const SERVER = 'http://localhost:3000/users/signin';
+
+  //onChange for username and password function
+  const handleInput = initialValue => {
+    const [value, setValue] = useState(initialValue);
+  
+    const handleChange = e => {
+      setValue(e.target.value);
+    }
+    return {
+      value,
+      onChange: handleChange
+    }
+  }
 
   // Error Handling
   // global login error
   const [error, setError] = useState(null);
   // is data loaded
   const [loading, setLoading] = useState(false)
+  
   // username
-  const [username, setUsername] = useState('');
+  const username = handleInput('');
   // password
-  const [password, setPassword] = useState('');
-  //onChange for username and password function
-  const handleInputChange = e => {
-    const {id, value} = e.target;
-    if(id === 'username') setUsername(value)
-    else {
-      setPassword(value)
-    }
-  }
+  const password = handleInput('');
+  
   //login on submit
-  const handleLogin = () => {
-    props.history.push('/dashboard')
+  const handleLogin =  () => {
+    setError(null);
+    setLoading(true);
+      axios.post(SERVER,{
+      username:username.value,password:password.value
+    }).then(response => {
+      console.log('from line 40')
+      console.log(response)
+      setLoading(false); // user is logged in
+      setUserSession(response.data.token, response.data.user)
+      props.history.push('/dashboard')
+    }).catch(err=>{
+      setLoading(false);
+      // if(error.response.status = 401 ){
+      //   setError(error.response.data.message);
+      // }
+      // else{
+        setError('Something went wrong. Please try again later.');
+      // }
+    })
+    // props.history.push('/dashboard')
   }
 
   return (
     <div>
-    Login
-    <br />
-    <br />
+    Login<br /><br />
     <div>
-    <label>Username</label>
-    <br/>
-    <input type ='text' placeholder ='john135@gmail.com' id ='username' value ={username} onChange = {handleInputChange}></input>
+      Username<br />
+      <input type="text" {...username} autoComplete="new-password" />
     </div>
-    <div>
-    <label>Password</label>
-    <br/>
-    <input type ='password' id ='password'value ={password} onChange = {handleInputChange}></input>
+    <div style={{ marginTop: 10 }}>
+      Password<br />
+      <input type="password" {...password} autoComplete="new-password" />
     </div>
-    {error && <div className="error">{error}</div>}
-    <input type="button" value={loading ? "Loading...": "Login"} disabled={loading} onClick ={handleLogin}
-    />
-    </div>
+    {error && <><small style={{ color: 'red' }}>{error}</small><br /></>}<br />
+    <input type="button" value={loading ? 'Loading...' : 'Login'} onClick={handleLogin} disabled={loading} /><br />
+  </div>
   )
 }
+
 export default Login;
