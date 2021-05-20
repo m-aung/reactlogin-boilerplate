@@ -30,7 +30,7 @@ app.use(cors());
 // parse application/json
 app.use(express.json());
 // parse application/x-www-form-urlencoded
-app.use(express.urlencoded({ extended: true }));
+// app.use(express.urlencoded({ extended: true }));
 app.disable('x-powered-by');
 //middleware that checks if JWT token exists and verifies it if it does exist.
 //In all future routes, this helps to know if the request is authenticated or not.
@@ -40,7 +40,7 @@ app.use((req, res, next) => {
   if (!token) return next(); //if no token, continue
 
   token = token.replace('Bearer ', '');
-  jwt.verify(token, process.env.JWT_SECRET, function (err, user) {
+  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
     if (err) {
       return res.status(401).json({
         error: true,
@@ -57,13 +57,13 @@ app.use((req, res, next) => {
 app.get('/', (req, res) => {
   if (!req.user)
     return res
-      .status(401)
+      .sendtatus(401)
       .json({ success: false, message: 'Invalid user to access it.' });
   res.send('Backend connected! - ' + req.user.name);
 });
 
 // validate the user credentials
-app.post('/users/signin', function (req, res) {
+app.post('/users/signin', (req, res) => {
   console.log('from backend /users/signin');
   const user = req.body.username;
   const pwd = req.body.password;

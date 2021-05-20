@@ -18,6 +18,7 @@ const App = () =>{
     }
 
     axios.get(`http://localhost:3000/verifyToken?token=${token}`).then(response => {
+      // if(!response) return response;
       setUserSession(response.data.token, response.data.user);
       setAuthLoading(false);
     }).catch(error => {
@@ -33,10 +34,10 @@ const App = () =>{
     <div className="App">
       <div className="header">
         <NavLink exact activeClassName='active' to ='/'>Home</NavLink>
-        <NavLink activeClassName='active' to ='/login'>Login <small>Access without token only</small></NavLink>
-        <NavLink activeClassName='active' to ='/signup'>Sign up<small>Access without token only</small></NavLink>
-        <NavLink activeClassName='active' to ='/dashboard'>My Dashboard<small>Access with token only</small></NavLink>
-        <NavLink activeClassName='active' to ='/about'>About<small>Access without token only</small></NavLink>
+        <NavLink activeClassName='active' to ='/login'>Login </NavLink>
+        <NavLink activeClassName='active' to ='/signup'>Sign up</NavLink>
+        <NavLink activeClassName='active' to ='/dashboard'>My Dashboard</NavLink>
+        <NavLink activeClassName='active' to ='/about'>About</NavLink>
       </div>
         <div className="content">
           <Switch>
