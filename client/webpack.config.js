@@ -12,7 +12,8 @@ const config = {
   entry: './index.js',
   output: {
     // the output of the webpack build will be in /dist directory
-    path: path.resolve(__dirname, 'dist'),
+    // path: path.resolve(__dirname, 'dist'),
+    path: './dist',
     // the filename of the JS bundle will be bundle.js
     filename: 'bundle.js',
   },
