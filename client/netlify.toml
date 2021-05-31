@@ -1,5 +1,3 @@
 [build]
-  command = "npm i"
-  command = "npm i @babel/core"
   command = "parcel build"
   publish = "./client/dist"
