@@ -10,18 +10,19 @@ import cors from 'cors';
 // const jwt = require('jsonwebtoken');
 import jwt from 'jsonwebtoken';
 
-import * as utils from './controllers/sessionController.js';
+import sessionController from './controllers/sessionController.js';
 
 const app = express();
 const port = process.env.PORT || 3000;
+const SECRET = process.env.JWT_SECRET || 'BoilerPlate';
 dotenv.config();
 
 // static user details
 const userData = {
   userId: '1121312',
-  password: '2233',
+  password: '1',
   name: 'admin',
-  username: 'admin@gmail.com',
+  username: '1',
   isAdmin: true,
 };
 
@@ -40,7 +41,7 @@ app.use((req, res, next) => {
   if (!token) return next(); //if no token, continue
 
   token = token.replace('Bearer ', '');
-  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+  jwt.verify(token, SECRET, (err, user) => {
     if (err) {
       return res.status(401).json({
         error: true,
@@ -57,7 +58,7 @@ app.use((req, res, next) => {
 app.get('/', (req, res) => {
   if (!req.user)
     return res
-      .sendtatus(401)
+      .sendStatus(401)
       .json({ success: false, message: 'Invalid user to access it.' });
   res.send('Backend connected! - ' + req.user.name);
 });
@@ -85,9 +86,9 @@ app.post('/users/signin', (req, res) => {
   }
 
   // generate token
-  const token = utils.generateToken(userData);
+  const token = sessionController.generateToken(userData);
   // get basic user details
-  const userObj = utils.getCleanUser(userData);
+  const userObj = sessionController.getCleanUser(userData);
   // return the token along with user details
   return res.json({ user: userObj, token });
 });
@@ -103,7 +104,7 @@ app.get('/verifyToken', function (req, res) {
     });
   }
   // check token that was passed by decoding token using secret
-  jwt.verify(token, process.env.JWT_SECRET, function (err, user) {
+  jwt.verify(token, SECRET, function (err, user) {
     if (err)
       return res.status(401).json({
         error: true,
@@ -118,7 +119,7 @@ app.get('/verifyToken', function (req, res) {
       });
     }
     // get basic user details
-    var userObj = utils.getCleanUser(userData);
+    var userObj = sessionController.getCleanUser(userData);
     return res.json({ user: userObj, token });
   });
 });

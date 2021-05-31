@@ -39,7 +39,7 @@ const Login = props => {
     }).then(response => {
       if(!response) return response
       // console.log('from line 40')
-      // console.log(response)
+      console.log(response)
       setLoading(false); // user is logged in
       setUserSession(response.data.token, response.data.user)
       props.history.push('/dashboard')

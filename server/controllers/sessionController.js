@@ -3,7 +3,7 @@
 import jwt from 'jsonwebtoken';
 
 const SessionController = {};
-
+const SECRET = process.env.JWT_SECRET || 'BoilerPlate';
 // generate token and return it
 SessionController.generateToken = (user) => {
   //1. Don't use password and other sensitive fields
@@ -18,7 +18,7 @@ SessionController.generateToken = (user) => {
     isAdmin,
   };
 
-  return jwt.sign(obj, process.env.JWT_SECRET, {
+  return jwt.sign(obj, SECRET, {
     expiresIn: 60 * 60 * 24, // expires in 24 hours
   });
 };
