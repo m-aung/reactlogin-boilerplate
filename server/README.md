@@ -1,2 +1,2 @@
 ### DEMO site
-https://app.netlify.com/sites/react-authentication-boilerplate-v1
+https://react-authentication-boilerplate-v1.netlify.app/
