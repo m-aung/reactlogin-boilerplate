@@ -34,9 +34,11 @@ const App = () =>{
     <div className="App">
       <div className="header">
         <NavLink exact activeClassName='active' to ='/'>Home</NavLink>
+        <NavLink exact activeClassName='active' to ='/'>Home</NavLink>
         <NavLink activeClassName='active' to ='/login'>Login </NavLink>
         <NavLink activeClassName='active' to ='/signup'>Sign up</NavLink>
         <NavLink activeClassName='active' to ='/dashboard'>My Dashboard</NavLink>
+        <NavLink exact activeClassName='active' to ='/*'>CODE 404 Not Found</NavLink>
         <NavLink activeClassName='active' to ='/about'>About</NavLink>
       </div>
         <div className="content">
