@@ -11,6 +11,8 @@ code {
   padding: 10px;
   background: #edf2f4;
   border-bottom: 1px solid #9999;
+  display: flex;
+  justify-content: space-around;
 }
 .header a {
   color: #0072ff;
@@ -32,4 +34,53 @@ code {
 .error {
   color: red;
   margin-bottom: 10px;
+}
+
+h1 {
+  text-align: center;
+}
+strong {
+  font-weight: 900;
+}
+i {
+  transition: transform 200ms ease-in-out;
+  cursor: pointer;
+}
+i:hover {
+  transform: scale(2.1);
+}
+a:visited {
+  text-decoration: none;
+  background-color: inherit;
+  color: #0072ff;
+}
+.context {
+  padding-top: 2em;
+  width: 100%;
+  top: 3em;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+.login-card,
+.sign-card {
+  display: block;
+  background-color: bisque;
+  border-style: solid;
+  border-radius: 0.125em;
+  border-width: 0.125em;
+  border: 0.5em 0.5em;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5em;
+  top: 3em;
+  padding: 1em 5em;
+  width: 400px;
+  text-align: center;
+}
+.card-items {
+  display: flex;
+  justify-content: space-around;
+  row-gap: 1em;
+  align-items: flex-start;
 }

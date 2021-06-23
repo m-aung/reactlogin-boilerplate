@@ -38,17 +38,19 @@ const Login = props => {
       username:username.value,password:password.value
     }).then(response => {
       if(!response) return response
-      // console.log('from line 40')
-      console.log(response)
+      console.log('from line 41')
+      console.log(response.data.token)
       setLoading(false); // user is logged in
       setUserSession(response.data.token, response.data.user)
       props.history.push('/dashboard')
+      return
     }).catch(err=>{
       setLoading(false);
       // if(error.response.status = 401 ){
       //   setError(error.response.data.message);
       // }
       // else{
+        console.log('from fetch error: ', err)
         setError('Something went wrong. Please try again later.');
       // }
     })
@@ -56,13 +58,13 @@ const Login = props => {
   }
 
   return (
-    <div>
+    <div className="login-card">
     Login<br /><br />
-    <div>
+    <div className="card-items">
       Username<br />
       <input type="text" {...username} autoComplete="new-password" />
     </div>
-    <div style={{ marginTop: 10 }}>
+    <div className="card-items">
       Password<br />
       <input type="password" {...password} autoComplete="new-password" />
     </div>

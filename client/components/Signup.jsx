@@ -1,7 +1,7 @@
 import React from 'react'
 const Signup = () => {
   return (
-    <div>
+    <div className="signup-card">
     Welcome to Sign up
     </div>
   )

@@ -12,8 +12,8 @@ export const getToken = () => {
 };
 
 //Setting Session
-export const setUserSession = () => {
-  console.log('Session Storage:', sessionStorage);
+export const setUserSession = (token, user) => {
+  // console.log('Session Storage:', sessionStorage);
   sessionStorage.getItem('token', token);
   sessionStorage.getItem('user', JSON.stringify(user));
 };
