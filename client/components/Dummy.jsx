@@ -5,9 +5,10 @@ import { getUser, removeUserSession } from '../services/Common';
 import Login from './Login'
 
 const Dummy = (props) => {
-  const user = getUser();
+  console.log('username:', props.user)
   const handleLogout = ()=> {
     removeUserSession();
+    props.logout('')
     props.history.push('/')
   }
   const handleLogin = () =>{
@@ -15,10 +16,10 @@ const Dummy = (props) => {
   }
   return (
     <div className="context">
-    Welcome to DashBoard!
+    Welcome to DashBoard {props.user}!
     <hr/>
     {
-      user ? 
+      props.user ? 
       <input type='button' value= 'Logout' onClick={handleLogout}/>:
       <input type='button' value= 'Login' onClick={handleLogin}/>
     }

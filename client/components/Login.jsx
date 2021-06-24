@@ -38,11 +38,12 @@ const Login = props => {
       username:username.value,password:password.value
     }).then(response => {
       if(!response) return response
-      console.log('from line 41')
-      console.log(response.data.token)
+      // console.log('from line 41')
+      console.log(response.data.user.username)
       setLoading(false); // user is logged in
       setUserSession(response.data.token, response.data.user)
-      props.history.push('/dashboard')
+      props.login(response.data.user.username)
+      props.history.push(`/dashboard?user=${response.data.user.username}`)
       return
     }).catch(err=>{
       setLoading(false);
@@ -59,17 +60,17 @@ const Login = props => {
 
   return (
     <div className="login-card">
-    Login<br /><br />
+    <h2>Login</h2>
     <div className="card-items">
-      Username<br />
-      <input type="text" {...username} autoComplete="new-password" />
+      Username
+      <input type="text" {...username} autoComplete="username" placeholder="John235" />
     </div>
     <div className="card-items">
-      Password<br />
+      Password
       <input type="password" {...password} autoComplete="new-password" />
     </div>
-    {error && <><small style={{ color: 'red' }}>{error}</small><br /></>}<br />
-    <input type="button" value={loading ? 'Loading...' : 'Login'} onClick={handleLogin} disabled={loading} /><br />
+    {error && <><small className="error">{error}</small><br /></>}
+    <input type="button" className="btn" value={loading ? 'Loading...' : 'Login'} onClick={handleLogin} disabled={loading} />
   </div>
   )
 }

@@ -30,6 +30,7 @@ const config = {
         options: {
           // attach the presets to the loader (most projects use .babelrc file instead)
           presets: ['@babel/preset-env', '@babel/preset-react'],
+          plugins: ['@babel/plugin-transform-runtime'],
         },
       },
       // css loader
