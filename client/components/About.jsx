@@ -9,7 +9,7 @@ const About = () => {
       marginLeft: "3em",
       letterSpacing: "1.5px",
       }}>
-    <h1>About React Boiler Plate for Login Authentication</h1>
+    <h1>About React Boilerplate for Login Authentication</h1>
     <h2>Front End</h2>
     <article>Components are organized within components directory. All the fetching services from backend is handled in Common.js under services. This is the basic Template for authentication without database connection. </article>
     <h2>Back End</h2>
